@@ -7,9 +7,21 @@
     Shell.FlyoutBehavior="Disabled"
     Title="mobiili_App">
 
+    <Shell.TitleView>
+        <Label
+            Text="Naidis"
+            FontFamily="LowRider BB Italic 400"
+            FontSize="Title"
+            TextColor="White"
+            VerticalTextAlignment="Center"
+            VerticalOptions="Center"
+            HorizontalOptions="Start"
+            Padding="25,0,0,0"
+            HeightRequest="50"/>
+    </Shell.TitleView>
     <ShellContent
-        Title="Avaleht"
-        ContentTemplate="{DataTemplate local:Start_page}"
-        Route="MainPage" />
+    Title="Avaleht"
+    ContentTemplate="{DataTemplate local:Start_page}"
+    Route="MainPage" />
 
 </Shell>

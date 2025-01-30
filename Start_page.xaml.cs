@@ -5,6 +5,7 @@ public partial class Start_page : ContentPage
 {
 	public List <ContentPage> lehed= new List <ContentPage> () { new Text_page(), new Figure_page()};
 	public List<string> Tekstid=new List<string> {"Tee lahti TekstiPage", "Tee lahti FigurePage"};
+
 	ScrollView sv;
 	VerticalStackLayout vsl;
 
