@@ -32,6 +32,13 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
+            <Button
+                x:Name="Btn2"
+                Text="Valgusfoor button" 
+                SemanticProperties.Hint=""
+                Clicked="OnClickedBtn2"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 

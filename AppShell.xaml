@@ -21,7 +21,7 @@
     </Shell.TitleView>
     <ShellContent
     Title="Avaleht"
-    ContentTemplate="{DataTemplate local:Start_page}"
+    ContentTemplate="{DataTemplate local:MainPage}"
     Route="MainPage" />
 
 </Shell>

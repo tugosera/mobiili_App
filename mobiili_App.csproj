@@ -57,27 +57,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Remove="valgusfoor.xaml" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Fonts\LowRider BB Italic 400.ttf" />
 	  <None Remove="Resources\Images\floyd.png" />
 	  <None Remove="Resources\Images\kat.jpg" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
-		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	  <EmbeddedResource Include="valgusfoor.xaml">
+	    <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+	  </EmbeddedResource>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="Figure_page.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Start_page.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
-	  <MauiXaml Update="Text_page.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </MauiXaml>
+		<PackageReference Include="Microsoft.Maui.Controls" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="$(MauiVersion)" />
+		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 	</ItemGroup>
 
 </Project>
