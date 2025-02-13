@@ -14,4 +14,4 @@ public partial class NewPage1 : ContentPage
 
         }
     }
-} 
+}  
