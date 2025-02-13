@@ -31,9 +31,9 @@
             SemanticScreenReader.Announce(CounterBtn.Text);
         }
 
-        private void OnClickedBtn2(object sender, EventArgs e)
+        private async void OnClickedBtn2(object sender, EventArgs e)
         {
-            
+            await Navigation.PushAsync(new NewPage1());
         }
     }
 
