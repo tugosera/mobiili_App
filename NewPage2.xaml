@@ -9,5 +9,11 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Frame x:Name="box" WidthRequest="300" HeightRequest="300" CornerRadius="10" BackgroundColor="Gray" HorizontalOptions="Center" VerticalOptions="End"/>
+        <Slider x:Name="redSlide" Minimum="0" Maximum="255"/>
+        <Slider x:Name="yellowSlide" Minimum="0" Maximum="255"/>
+        <Slider x:Name="blueSlide" Minimum="0" Maximum="255"/>
+        <Label Text="{Binding Source={x:Reference redSlide}, Path=Value, StringFormat='Red - {0:F0}'}" HorizontalOptions="Center"/>
+        <Label Text="{Binding Source={x:Reference yellowSlide}, Path=Value, StringFormat='Yellow - {0:F0}'}" HorizontalOptions="Center"/>
+        <Label Text="{Binding Source={x:Reference blueSlide}, Path=Value, StringFormat='Blue - {0:F0}'}" HorizontalOptions="Center"/>
     </VerticalStackLayout>
 </ContentPage>
