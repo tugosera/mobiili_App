@@ -8,9 +8,15 @@
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
-        <Frame x:Name="red" WidthRequest="100" HeightRequest="100" CornerRadius="50" BackgroundColor="Gray"/>
-        <Frame x:Name="Yellow" WidthRequest="100" HeightRequest="100" CornerRadius="50" BackgroundColor="Gray"/>
-        <Frame x:Name="green" WidthRequest="100" HeightRequest="100" CornerRadius="50" BackgroundColor="Gray"/>
+        <Frame x:Name="green" WidthRequest="100" HeightRequest="100" CornerRadius="50" BackgroundColor="Gray">
+            <Label Text="Roheline" HorizontalOptions="Center" VerticalOptions="Center"/>
+        </Frame>
+        <Frame x:Name="yellow" WidthRequest="100" HeightRequest="100" CornerRadius="50" BackgroundColor="Gray">
+            <Label Text="Kollane" VerticalOptions="Center" HorizontalOptions="Center"/>
+        </Frame>
+        <Frame x:Name="red" WidthRequest="100" HeightRequest="100" CornerRadius="50" BackgroundColor="Gray">
+            <Label Text="punane" VerticalOptions="Center" HorizontalOptions="Center"/>
+        </Frame>
         <Button
             x:Name="Btn3"
             Text="Valgusfoor button" 
