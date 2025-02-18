@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="mobiili_App.NewPage2"
+             Title="NewPage2">
+    <VerticalStackLayout>
+        <Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Frame x:Name="box" WidthRequest="300" HeightRequest="300" CornerRadius="10" BackgroundColor="Gray" HorizontalOptions="Center" VerticalOptions="End"/>
+    </VerticalStackLayout>
+</ContentPage>

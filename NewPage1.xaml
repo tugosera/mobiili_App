@@ -9,20 +9,36 @@
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
         <Frame x:Name="green" WidthRequest="100" HeightRequest="100" CornerRadius="50" BackgroundColor="Gray">
-            <Label Text="Roheline" HorizontalOptions="Center" VerticalOptions="Center"/>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="greenTapped"/>
+            </Frame.GestureRecognizers>
+            <Label x:Name="lblG" Text="Roheline" HorizontalOptions="Center" VerticalOptions="Center"/>
         </Frame>
         <Frame x:Name="yellow" WidthRequest="100" HeightRequest="100" CornerRadius="50" BackgroundColor="Gray">
-            <Label Text="Kollane" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="yellowTapped"/>
+            </Frame.GestureRecognizers>
+            <Label x:Name="lblY" Text="Kollane" VerticalOptions="Center" HorizontalOptions="Center"/>
         </Frame>
         <Frame x:Name="red" WidthRequest="100" HeightRequest="100" CornerRadius="50" BackgroundColor="Gray">
-            <Label Text="punane" VerticalOptions="Center" HorizontalOptions="Center"/>
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="redTapped"/>
+            </Frame.GestureRecognizers>
+            <Label x:Name="lblR"  Text="punane" VerticalOptions="Center" HorizontalOptions="Center"/>
         </Frame>
         <Button
             x:Name="Btn3"
-            Text="Valgusfoor button" 
+            Text="Valgusfoor on" 
             SemanticProperties.Hint=""
             Clicked="OnClickedBtn3"
             HorizontalOptions="End"
             VerticalOptions="End" />
+        <Button
+            x:Name="Btn4"
+            Text="Valgusfoor off" 
+            SemanticProperties.Hint=""
+            Clicked="OnClickedBtn4"
+            HorizontalOptions="Start"
+            VerticalOptions="Start" />
     </VerticalStackLayout>
 </ContentPage>

@@ -39,6 +39,13 @@
                 Clicked="OnClickedBtn2"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill" />
+            <Button
+                x:Name="Btn5"
+                Text="RGBtöö button" 
+                SemanticProperties.Hint=""
+                Clicked="OnClickedBtn5"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 
