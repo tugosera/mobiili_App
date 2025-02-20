@@ -6,7 +6,7 @@ public partial class NewPage1 : ContentPage
 	{
 		InitializeComponent();
 	}
-
+    int g = 0;
     bool i = false;
     private async void OnClickedBtn3(object sender, EventArgs e)
     {
@@ -73,20 +73,27 @@ public partial class NewPage1 : ContentPage
 
     }
 
-    private async void OnClickedBtn3(object sender, EventArgs e)
+    private async void OnClickedBtn6(object sender, EventArgs e)
     {
-        i = true;
-        while (i == true)
+        if (g == 0)
         {
+            g++;
             green.BackgroundColor = Color.FromRgb(0, 255, 0);
             red.BackgroundColor = Color.FromRgb(128, 128, 128);
-            await Task.Delay(1500);
+            yellow.BackgroundColor = Color.FromRgb(128, 128, 128);
+        }
+        else if (g == 1)
+        {
+            g++;
             yellow.BackgroundColor = Color.FromRgb(255, 255, 0);
             green.BackgroundColor = Color.FromRgb(128, 128, 128);
-            await Task.Delay(1500);
+            red.BackgroundColor = Color.FromRgb(128, 128, 128);
+        }
+        else {
+            g = 0;
             red.BackgroundColor = Color.FromRgb(255, 0, 0);
             yellow.BackgroundColor = Color.FromRgb(128, 128, 128);
-            await Task.Delay(1500);
+            green.BackgroundColor = Color.FromRgb(128, 128, 128);
         }
     }
 }  

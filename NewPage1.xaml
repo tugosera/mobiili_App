@@ -36,13 +36,21 @@
                 VerticalOptions="End"
                  Grid.Column="0"/>
             <Button
+                x:Name="Btn5"
+                Text="Valgusfoor skip" 
+                SemanticProperties.Hint=""
+                Clicked="OnClickedBtn6"
+                HorizontalOptions="Center"
+                VerticalOptions="Start"
+                Grid.Column="1"/>
+            <Button
                 x:Name="Btn4"
                 Text="Valgusfoor off" 
                 SemanticProperties.Hint=""
                 Clicked="OnClickedBtn4"
                 HorizontalOptions="End"
                 VerticalOptions="Start"
-                Grid.Column="1"/>   
+                Grid.Column="2"/>   
         </Grid>
         
     </VerticalStackLayout>
