@@ -9,7 +9,6 @@ public partial class NewPage2 : ContentPage
 
     void OnSliderValueChanged(object sender, ValueChangedEventArgs args)
     {
-
-        
+        box.BackgroundColor = Color.FromRgb((int)redSlide.Value, (int)greenSlide.Value, (int)blueSlide.Value);   
     }
 }

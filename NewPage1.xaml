@@ -26,19 +26,24 @@
             </Frame.GestureRecognizers>
             <Label x:Name="lblR"  Text="punane" VerticalOptions="Center" HorizontalOptions="Center"/>
         </Frame>
-        <Button
-            x:Name="Btn3"
-            Text="Valgusfoor on" 
-            SemanticProperties.Hint=""
-            Clicked="OnClickedBtn3"
-            HorizontalOptions="End"
-            VerticalOptions="End" />
-        <Button
-            x:Name="Btn4"
-            Text="Valgusfoor off" 
-            SemanticProperties.Hint=""
-            Clicked="OnClickedBtn4"
-            HorizontalOptions="Start"
-            VerticalOptions="Start" />
+        <Grid>
+             <Button
+                x:Name="Btn3"
+                Text="Valgusfoor on" 
+                SemanticProperties.Hint=""
+                Clicked="OnClickedBtn3"
+                HorizontalOptions="Start"
+                VerticalOptions="End"
+                 Grid.Column="0"/>
+            <Button
+                x:Name="Btn4"
+                Text="Valgusfoor off" 
+                SemanticProperties.Hint=""
+                Clicked="OnClickedBtn4"
+                HorizontalOptions="End"
+                VerticalOptions="Start"
+                Grid.Column="1"/>   
+        </Grid>
+        
     </VerticalStackLayout>
 </ContentPage>

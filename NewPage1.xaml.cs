@@ -72,4 +72,21 @@ public partial class NewPage1 : ContentPage
         }
 
     }
+
+    private async void OnClickedBtn3(object sender, EventArgs e)
+    {
+        i = true;
+        while (i == true)
+        {
+            green.BackgroundColor = Color.FromRgb(0, 255, 0);
+            red.BackgroundColor = Color.FromRgb(128, 128, 128);
+            await Task.Delay(1500);
+            yellow.BackgroundColor = Color.FromRgb(255, 255, 0);
+            green.BackgroundColor = Color.FromRgb(128, 128, 128);
+            await Task.Delay(1500);
+            red.BackgroundColor = Color.FromRgb(255, 0, 0);
+            yellow.BackgroundColor = Color.FromRgb(128, 128, 128);
+            await Task.Delay(1500);
+        }
+    }
 }  
