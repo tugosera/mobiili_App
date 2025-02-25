@@ -46,6 +46,13 @@
                 Clicked="OnClickedBtn5"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill" />
+            <Button
+                x:Name="Btn6"
+                Text="Lumemmem button" 
+                SemanticProperties.Hint=""
+                Clicked="OnClickedBtn6"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 

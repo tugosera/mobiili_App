@@ -39,6 +39,10 @@
         {
             await Navigation.PushAsync(new NewPage2());
         }
+        private async void OnClickedBtn6(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NewPage3());
+        }
     }
 
 }
