@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="mobiili_App.NewPage4"
+             Title="NewPage4">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="100" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="200" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Label  Text="Trips traps trull"
+                Grid.Row="0"
+                Grid.ColumnSpan="3"
+                HorizontalOptions="Center" VerticalOptions="Center"
+                FontSize="22"/>
+        
+        <Frame Grid.Row="1" Grid.Column="0" WidthRequest="100" HeightRequest="100" CornerRadius="0" BorderColor="gray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="FrameTapped"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+        <Frame Grid.Row="1" Grid.Column="1" WidthRequest="100" HeightRequest="100" CornerRadius="0" BorderColor="gray">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="FrameTapped"/>
+                </Frame.GestureRecognizers>
+        </Frame>
+        <Frame Grid.Row="1" Grid.Column="2" WidthRequest="100" HeightRequest="100" CornerRadius="0" BorderColor="gray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="FrameTapped"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+        <Frame Grid.Row="3" Grid.Column="0" WidthRequest="100" HeightRequest="100" CornerRadius="0" BorderColor="gray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="FrameTapped"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+        <Frame Grid.Row="3" Grid.Column="1" WidthRequest="100" HeightRequest="100" CornerRadius="0" BorderColor="gray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="FrameTapped"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+        <Frame Grid.Row="3" Grid.Column="2" WidthRequest="100" HeightRequest="100" CornerRadius="0" BorderColor="gray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="FrameTapped"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+        <Frame Grid.Row="5" Grid.Column="0" WidthRequest="100" HeightRequest="100" CornerRadius="0" BorderColor="gray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="FrameTapped"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+        <Frame Grid.Row="5" Grid.Column="1" WidthRequest="100" HeightRequest="100" CornerRadius="0" BorderColor="gray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="FrameTapped"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+        <Frame Grid.Row="5" Grid.Column="2" WidthRequest="100" HeightRequest="100" CornerRadius="0" BorderColor="gray">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Tapped="FrameTapped"/>
+            </Frame.GestureRecognizers>
+        </Frame>
+        <Button x:Name=""
+            Text="mängida sõbraga"
+            HorizontalOptions="Start" VerticalOptions="Start"
+            Grid.Row="7" Grid.ColumnSpan="3"
+            WidthRequest="390" HeightRequest="40"
+            Clicked="OnClickedBtnSõbraga">
+        </Button>
+        <Button x:Name=""
+            Text="mängida robotiga"
+            HorizontalOptions="Start" VerticalOptions="Center"
+            Grid.Row="7" Grid.ColumnSpan="3"
+            WidthRequest="390" HeightRequest="40"
+            Clicked="OnClickedBtnAi">
+        </Button>
+        <Button x:Name=""
+            Text="mängida robotiga"
+            HorizontalOptions="Start" VerticalOptions="Center"
+            Grid.Row="7" Grid.ColumnSpan="3"
+            WidthRequest="390" HeightRequest="40"
+            Clicked="OnClickedBtnAi">
+        </Button>
+
+    </Grid>
+</ContentPage>
