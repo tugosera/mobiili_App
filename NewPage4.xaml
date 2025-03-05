@@ -70,26 +70,26 @@
                 <TapGestureRecognizer Tapped="FrameTapped"/>
             </Frame.GestureRecognizers>
         </Frame>
-        <Button x:Name=""
+        <Button x:Name="BtnSõber"
             Text="mängida sõbraga"
             HorizontalOptions="Start" VerticalOptions="Start"
             Grid.Row="7" Grid.ColumnSpan="3"
             WidthRequest="390" HeightRequest="40"
             Clicked="OnClickedBtnSõbraga">
         </Button>
-        <Button x:Name=""
+        <Button x:Name="BtnAi"
             Text="mängida robotiga"
             HorizontalOptions="Start" VerticalOptions="Center"
             Grid.Row="7" Grid.ColumnSpan="3"
             WidthRequest="390" HeightRequest="40"
             Clicked="OnClickedBtnAi">
         </Button>
-        <Button x:Name=""
-            Text="mängida robotiga"
-            HorizontalOptions="Start" VerticalOptions="Center"
+        <Button x:Name="BtnRules"
+            Text="Vaata reeglid"
+            HorizontalOptions="Start" VerticalOptions="End"
             Grid.Row="7" Grid.ColumnSpan="3"
             WidthRequest="390" HeightRequest="40"
-            Clicked="OnClickedBtnAi">
+            Clicked="OnClickedBtnRules">
         </Button>
 
     </Grid>
