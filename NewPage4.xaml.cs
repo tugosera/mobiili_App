@@ -53,8 +53,6 @@ public partial class NewPage4 : ContentPage
             Source = isXTurn ? "krokodiro.png" : "tralala.png", // Указываем путь к изображению
             Aspect = Aspect.AspectFill, // Растягиваем изображение с сохранением пропорций
             Margin = 0, // Убираем отступы
-            HorizontalOptions = LayoutOptions.FillAndExpand, // Заполняем по горизонтали
-            VerticalOptions = LayoutOptions.FillAndExpand // Заполняем по вертикали
         };
 
         // Проверяем, есть ли победитель
@@ -114,7 +112,7 @@ public partial class NewPage4 : ContentPage
             {
                 frame.Content = new Image
                 {
-                    Source = "krokodiro.png", // Указываем путь к изображению для нолика
+                    Source = "tralala.png", // Указываем путь к изображению для нолика
                     Aspect = Aspect.AspectFit
                 };
             }

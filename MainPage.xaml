@@ -60,6 +60,13 @@
                 Clicked="OnClickedBtn7"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill" />
+            <Button
+                x:Name="Btn8"
+                Text="Sõbrade kontaktandmed button" 
+                SemanticProperties.Hint=""
+                Clicked="OnClickedBtn8"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 
