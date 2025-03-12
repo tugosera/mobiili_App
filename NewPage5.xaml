@@ -9,4 +9,4 @@
         <Button Text="Send SMS" Clicked="Saada_sms_Clicked"/>
         <Button Text="Send Email" Clicked="Saada_email_Clicked"/>
     </StackLayout>
-</ContentPage>
+</ContentPage> 
