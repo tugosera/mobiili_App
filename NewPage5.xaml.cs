@@ -9,7 +9,7 @@ public partial class NewPage5 : ContentPage
 
 	private async void Saada_sms_Clicked(object? sender, EventArgs e)
 	{
-		string phone = email_phone.Text;
+		string phone = phoneEntry.Text;
 		var message = "Tere tulemast! Saadan sõnumi";
 		SmsMessage sms = new SmsMessage(message, phone);
 		if (phone != null && Sms.Default.IsComposeSupported)
