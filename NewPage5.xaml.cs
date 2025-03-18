@@ -19,7 +19,18 @@ public partial class NewPage5 : ContentPage
 	}
     private async void Saada_email_Clicked(object? sender, EventArgs e)
     {
-
+        var message = "Tere tulemast! Saadan emaili";
+		EmailMessage e_mail = new EmailMessage
+		{
+			Subject = email_phone.Text,
+			Body = message,
+			BodyFormat = EmailBodyFormat.PlainText,
+			To = new List<string>(new[] { email_phone.Text })
+		};
+		if (Email.Default.IsComposeSupported)
+		{
+			await Email.Default.ComposeAsync(e_mail);
+		}
     }
 
 }

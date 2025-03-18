@@ -32,7 +32,7 @@ public partial class NewPage4 : ContentPage
     {
         if (!gameStarted)
         {
-            await DisplayAlert("Ошибка", "Сначала начните игру", "OK");
+            await DisplayAlert("Viga", "Kõigepealt alusta mängu", "OK");
             return;
         }
 
@@ -42,7 +42,7 @@ public partial class NewPage4 : ContentPage
 
         if (board[row, col] != "") // Если клетка уже занята
         {
-            await DisplayAlert("Ошибка", "Клетка уже занята", "OK");
+            await DisplayAlert("Viga", "Rakk on juba hõivatud", "OK");
             return;
         }
 
@@ -58,7 +58,7 @@ public partial class NewPage4 : ContentPage
         // Проверяем, есть ли победитель
         if (CheckWinner())
         {
-            await DisplayAlert("Победа!", $"Игрок {(isXTurn ? "X" : "O")} выиграл!", "OK");
+            await DisplayAlert("Võit!", $"Mängija {(isXTurn ? "X" : "O")} võitis!", "OK");
             ResetGame();
             return;
         }
@@ -66,7 +66,7 @@ public partial class NewPage4 : ContentPage
         // Проверяем на ничью
         if (IsBoardFull())
         {
-            await DisplayAlert("Ничья!", "Игра окончена", "OK");
+            await DisplayAlert("Viik!", "Mäng on läbi", "OK");
             ResetGame();
             return;
         }
@@ -112,35 +112,31 @@ public partial class NewPage4 : ContentPage
             {
                 frame.Content = new Image
                 {
-                    Source = "tralala.png", // Указываем путь к изображению для нолика
+                    Source = "tralala.png",
                     Aspect = Aspect.AspectFit
                 };
             }
 
-            // Проверяем, есть ли победитель
             if (CheckWinner())
             {
-                DisplayAlert("Победа!", "ИИ выиграл!", "OK");
+                DisplayAlert("Võit!", "robot võitis!", "OK");
                 ResetGame();
                 return;
             }
 
-            // Проверяем на ничью
             if (IsBoardFull())
             {
-                DisplayAlert("Ничья!", "Игра окончена", "OK");
+                DisplayAlert("Viik!", "Mäng on läbi", "OK");
                 ResetGame();
                 return;
             }
 
-            // Меняем ход
             isXTurn = !isXTurn;
         }
     }
 
     private bool CheckWinner()
     {
-        // Проверка строк и столбцов
         for (int i = 0; i < 3; i++)
         {
             if (board[i, 0] != "" && board[i, 0] == board[i, 1] && board[i, 1] == board[i, 2])
@@ -149,7 +145,6 @@ public partial class NewPage4 : ContentPage
                 return true;
         }
 
-        // Проверка диагоналей
         if (board[0, 0] != "" && board[0, 0] == board[1, 1] && board[1, 1] == board[2, 2])
             return true;
         if (board[0, 2] != "" && board[0, 2] == board[1, 1] && board[1, 1] == board[2, 0])
@@ -190,17 +185,16 @@ public partial class NewPage4 : ContentPage
     private async void OnClickedBtnSõbraga(object sender, EventArgs e)
     {
         gameStarted = true;
-        isAgainstAI = false; // Игра против друга
-        await DisplayAlert("Игра", "Игра началась", "OK");
+        isAgainstAI = false; 
+        await DisplayAlert("Mäng", "Mäng algas", "OK");
     }
 
     private async void OnClickedBtnAi(object sender, EventArgs e)
     {
         gameStarted = true;
-        isAgainstAI = true; // Игра против ИИ
-        await DisplayAlert("Игра", "Игра началась", "OK");
+        isAgainstAI = true;
+        await DisplayAlert("Mäng", "Mäng lõpetas", "OK");
 
-        // Если ИИ ходит первым
         if (!isXTurn)
         {
             MakeAIMove();
@@ -209,9 +203,9 @@ public partial class NewPage4 : ContentPage
 
     private async void OnClickedBtnRules(object sender, EventArgs e)
     {
-        await DisplayAlert("Правила",
-            "1. Игроки по очереди ставят X или O на свободные клетки.\n" +
-            "2. Первый, кто выстроит три своих символа в ряд (по горизонтали, вертикали или диагонали), выигрывает.\n" +
-            "3. Если все клетки заполнены, но победителя нет, игра заканчивается ничьей.", "OK");
+        await DisplayAlert("Reeglid",
+            "1. Mängijad panevad kordamööda X või O vabadele puuridele.\n" +
+            "2. Esimene, kes rivistab oma kolm sümbolit ritta (horisondi, vertikaali või diagonaali järgi), võidab.\n" +
+            "3. Kui kõik puurid on täis, aga võitjat ei ole, lõpeb mäng viigiga.", "OK");
     }
 }

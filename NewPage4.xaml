@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="mobiili_App.NewPage4"
-             Title="Крестики-нолики">
+             Title="Trips traps trull">
     <Grid x:Name="GameGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="100" />
@@ -20,13 +20,12 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Label Text="Крестики-нолики"
+        <Label Text="Trips traps trull"
                 Grid.Row="0"
                 Grid.ColumnSpan="3"
                 HorizontalOptions="Center" VerticalOptions="Center"
                 FontSize="22"/>
 
-        <!-- Игровое поле -->
         <Frame x:Name="Cell00" Grid.Row="1" Grid.Column="0" WidthRequest="100" HeightRequest="100" CornerRadius="0" BorderColor="gray">
             <Frame.GestureRecognizers>
                 <TapGestureRecognizer Tapped="FrameTapped"/>
@@ -73,21 +72,20 @@
             </Frame.GestureRecognizers>
         </Frame>
 
-        <!-- Кнопки -->
         <Button x:Name="BtnSõber"
-                Text="Играть с другом"
+                Text="Mängi sõbraga"
                 HorizontalOptions="Start" VerticalOptions="Start"
                 Grid.Row="7" Grid.ColumnSpan="3"
                 WidthRequest="390" HeightRequest="40"
                 Clicked="OnClickedBtnSõbraga"/>
         <Button x:Name="BtnAi"
-                Text="Играть с ИИ"
+                Text="Mängi robotiga"
                 HorizontalOptions="Start" VerticalOptions="Center"
                 Grid.Row="7" Grid.ColumnSpan="3"
                 WidthRequest="390" HeightRequest="40"
                 Clicked="OnClickedBtnAi"/>
         <Button x:Name="BtnRules"
-                Text="Правила"
+                Text="reeglid"
                 HorizontalOptions="Start" VerticalOptions="End"
                 Grid.Row="7" Grid.ColumnSpan="3"
                 WidthRequest="390" HeightRequest="40"
