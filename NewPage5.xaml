@@ -3,9 +3,16 @@
          x:Class="mobiili_App.NewPage5"
          Title="NewPage5">
     <StackLayout Padding="20">
-        <Entry x:Name="phoneEntry" Placeholder="Enter phone number" />
-        <Entry x:Name="email_phone" Placeholder="Enter email address" />
+        <Entry x:Name="phoneEntry" Placeholder="Sisesta phone number" />
+        <Entry x:Name="email_phone" Placeholder="Sisesta email address" />
         <Button Text="Send SMS" Clicked="Saada_sms_Clicked"/>
         <Button Text="Send Email" Clicked="Saada_email_Clicked"/>
+        <Entry x:Name="name" Placeholder="Sisesta kontakti nimi" />
+        <Entry x:Name="phone" Placeholder="Sisesta phone number" />
+        <Entry x:Name="email" Placeholder="Sisesta email address" />
+        <Entry x:Name="imageUrl" Placeholder="Sisesta pildi URL" />
+        <Button Text="Add Contact" Clicked="AddContact_Clicked"/>
+
+        <StackLayout x:Name="ContactsList" />
     </StackLayout>
 </ContentPage>
