@@ -14,6 +14,21 @@ public partial class NewPage5 : ContentPage
             DisplayAlert("Error", "Please enter a phone number", "OK");
             return;
         }
+        if (string.IsNullOrWhiteSpace(imageUrl.Text))
+        {
+            DisplayAlert("Error", "Please enter a image:(", "OK");
+            return;
+        }
+        if (string.IsNullOrWhiteSpace(name.Text))
+        {
+            DisplayAlert("Error", "Please enter a name", "OK");
+            return;
+        }
+        if (string.IsNullOrWhiteSpace(email.Text))
+        {
+            DisplayAlert("Error", "Please enter a email", "OK");
+            return;
+        }
 
         var newContact = new Frame
         {
