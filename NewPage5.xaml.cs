@@ -1,8 +1,13 @@
+using Microsoft.Maui.Media;
+using System;
+using System.Data.SqlClient;
+using Microsoft.Maui.Controls;
 namespace mobiili_App;
 
 public partial class NewPage5 : ContentPage
 {
-	public NewPage5()
+    private string connectionString = "Data Source = (localdb)\\MSSQLLocalDB;Initial Catalog = app; Integrated Security = True;";
+    public NewPage5()
 	{
 		InitializeComponent();
 	}
@@ -59,6 +64,20 @@ public partial class NewPage5 : ContentPage
         ContactsList.Children.Add(newContact);
         phoneEntry.Text = string.Empty;
         email_phone.Text = string.Empty;
+
+        using (SqlConnection conn = new SqlConnection(connectionString))
+        {
+            conn.Open();
+            string query = "INSERT INTO friend (name, phone, email, image) VALUES (@name, @phone, @email, @image)";
+            using (SqlCommand cmd = new SqlCommand(query, conn))
+            {
+                cmd.Parameters.AddWithValue("@name", name.Text);
+                cmd.Parameters.AddWithValue("@phone", phone.Text);
+                cmd.Parameters.AddWithValue("@email", email.Text);
+                cmd.Parameters.AddWithValue("@image", imageUrl.Text);
+                cmd.ExecuteNonQuery();
+            }
+        }
     }
 
     private async void Saada_sms_Clicked(object? sender, EventArgs e)
