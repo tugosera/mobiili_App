@@ -1,109 +1,153 @@
 using Microsoft.Maui.Media;
-using System;
-using System.Data.SqlClient;
 using Microsoft.Maui.Controls;
+using SQLite;
+using System;
+using System.Collections.Generic;
+using System.IO;
+
 namespace mobiili_App;
+
+public class Friend
+{
+    [PrimaryKey, AutoIncrement]
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string Phone { get; set; }
+    public string Email { get; set; }
+    public string Image { get; set; }
+}
 
 public partial class NewPage5 : ContentPage
 {
-    private string connectionString = "Data Source = (localdb)\\MSSQLLocalDB;Initial Catalog = app; Integrated Security = True;";
+    private readonly string dbPath = Path.Combine(FileSystem.AppDataDirectory, "app.db");
+    private SQLiteConnection db;
+
     public NewPage5()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+        db = new SQLiteConnection(dbPath);
+        db.CreateTable<Friend>();
+        LoadContacts();
+    }
+
+    private void LoadContacts()
+    {
+        ContactsList.Children.Clear();
+        var contacts = db.Table<Friend>().ToList();
+
+        foreach (var contact in contacts)
+        {
+            var contactFrame = new Frame
+            {
+                Padding = 10,
+                Margin = 10,
+                CornerRadius = 10,
+                BackgroundColor = Colors.LightGray,
+                Content = new StackLayout
+                {
+                    Orientation = StackOrientation.Horizontal,
+                    Spacing = 10,
+                    Children =
+                    {
+                        new Image
+                        {
+                            Source = new UriImageSource { Uri = new Uri(contact.Image) },
+                            WidthRequest = 40,
+                            HeightRequest = 40
+                        },
+                        new StackLayout
+                        {
+                            VerticalOptions = LayoutOptions.Center,
+                            Children =
+                            {
+                                new Label { Text = contact.Name },
+                                new Label { Text = contact.Email, FontAttributes = FontAttributes.Bold },
+                                new Label { Text = contact.Phone }
+                            }
+                        },
+                        new Button
+                        {
+                            Text = "??",
+                            BackgroundColor = Colors.Transparent,
+                            TextColor = Colors.Red,
+                            FontSize = 20,
+                            VerticalOptions = LayoutOptions.Center,
+                            HorizontalOptions = LayoutOptions.EndAndExpand,
+                            Command = new Command(() => DeleteContact(contact))
+                        }
+                    }
+                }
+            };
+
+            ContactsList.Children.Add(contactFrame);
+        }
+    }
+
+    private async void DeleteContact(Friend friend)
+    {
+        bool confirm = await DisplayAlert("Kustuta kontakt", $"Kas soovid kindlasti kustutada {friend.Name}?", "Jah", "Ei");
+        if (confirm)
+        {
+            db.Delete(friend);
+            LoadContacts();
+        }
+    }
 
     private void AddContact_Clicked(object sender, EventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(phone.Text ))
+        if (string.IsNullOrWhiteSpace(phone.Text) ||
+            string.IsNullOrWhiteSpace(imageUrl.Text) ||
+            string.IsNullOrWhiteSpace(name.Text) ||
+            string.IsNullOrWhiteSpace(email.Text))
         {
-            DisplayAlert("Error", "Please enter a phone number", "OK");
-            return;
-        }
-        if (string.IsNullOrWhiteSpace(imageUrl.Text))
-        {
-            DisplayAlert("Error", "Please enter a image:(", "OK");
-            return;
-        }
-        if (string.IsNullOrWhiteSpace(name.Text))
-        {
-            DisplayAlert("Error", "Please enter a name", "OK");
-            return;
-        }
-        if (string.IsNullOrWhiteSpace(email.Text))
-        {
-            DisplayAlert("Error", "Please enter a email", "OK");
+            DisplayAlert("Error", "Please fill in all fields", "OK");
             return;
         }
 
-        var newContact = new Frame
+        var friend = new Friend
         {
-            Padding = 10,
-            Margin = 10,
-            CornerRadius = 10,
-            BackgroundColor = Colors.LightGray,
-            Content = new StackLayout
-            {
-                Orientation = StackOrientation.Horizontal,
-                Spacing = 10,
-                Children =
-                    {
-                        new Image { Source = new UriImageSource { Uri = new Uri(imageUrl.Text) }, WidthRequest = 40, HeightRequest = 40 },
-                        new StackLayout
-                        {
-                            Children =
-                            {
-                                new Label { Text = name.Text },
-                                new Label { Text = email.Text, FontAttributes = FontAttributes.Bold },
-                                new Label { Text = phone.Text }
-                            }
-                        }
-                    }
-            }
+            Name = name.Text,
+            Phone = phone.Text,
+            Email = email.Text,
+            Image = imageUrl.Text
         };
 
-        ContactsList.Children.Add(newContact);
+        db.Insert(friend);
+        LoadContacts();
+
+        // ??????? ?????
+        name.Text = string.Empty;
+        phone.Text = string.Empty;
+        email.Text = string.Empty;
+        imageUrl.Text = string.Empty;
         phoneEntry.Text = string.Empty;
         email_phone.Text = string.Empty;
-
-        using (SqlConnection conn = new SqlConnection(connectionString))
-        {
-            conn.Open();
-            string query = "INSERT INTO friend (name, phone, email, image) VALUES (@name, @phone, @email, @image)";
-            using (SqlCommand cmd = new SqlCommand(query, conn))
-            {
-                cmd.Parameters.AddWithValue("@name", name.Text);
-                cmd.Parameters.AddWithValue("@phone", phone.Text);
-                cmd.Parameters.AddWithValue("@email", email.Text);
-                cmd.Parameters.AddWithValue("@image", imageUrl.Text);
-                cmd.ExecuteNonQuery();
-            }
-        }
     }
 
     private async void Saada_sms_Clicked(object? sender, EventArgs e)
-	{
-		string phone = phoneEntry.Text;
-		var message = "Tere tulemast! Saadan sõnumi";
-		SmsMessage sms = new SmsMessage(message, phone);
-		if (phone != null && Sms.Default.IsComposeSupported)
-		{
-			await Sms.Default.ComposeAsync(sms);
-		}
-	}
+    {
+        string phone = phoneEntry.Text;
+        var message = "Tere tulemast! Saadan sõnumi";
+        SmsMessage sms = new SmsMessage(message, phone);
+        if (!string.IsNullOrWhiteSpace(phone) && Sms.Default.IsComposeSupported)
+        {
+            await Sms.Default.ComposeAsync(sms);
+        }
+    }
+
     private async void Saada_email_Clicked(object? sender, EventArgs e)
     {
         var message = "Tere tulemast! Saadan emaili";
-		EmailMessage e_mail = new EmailMessage
-		{
-			Subject = email_phone.Text,
-			Body = message,
-			BodyFormat = EmailBodyFormat.PlainText,
-			To = new List<string>(new[] { email_phone.Text })
-		};
-		if (Email.Default.IsComposeSupported)
-		{
-			await Email.Default.ComposeAsync(e_mail);
-		}
+        EmailMessage e_mail = new EmailMessage
+        {
+            Subject = email_phone.Text,
+            Body = message,
+            BodyFormat = EmailBodyFormat.PlainText,
+            To = new List<string> { email_phone.Text }
+        };
+        if (Email.Default.IsComposeSupported)
+        {
+            await Email.Default.ComposeAsync(e_mail);
+        }
     }
-
 }
