@@ -1,4 +1,4 @@
-using Microsoft.Maui.Media;
+﻿using Microsoft.Maui.Media;
 using Microsoft.Maui.Controls;
 using SQLite;
 using System;
@@ -43,6 +43,13 @@ public partial class NewPage5 : ContentPage
                 Margin = 10,
                 CornerRadius = 10,
                 BackgroundColor = Colors.LightGray,
+                GestureRecognizers =
+                {
+                    new TapGestureRecognizer
+                    {
+                        Command = new Command(() => SelectContact(contact))
+                    }
+                },
                 Content = new StackLayout
                 {
                     Orientation = StackOrientation.Horizontal,
@@ -65,12 +72,12 @@ public partial class NewPage5 : ContentPage
                                 new Label { Text = contact.Phone }
                             }
                         },
-                        new Button
-                        {
-                            Text = "??",
+                        new ImageButton
+{
+                            Source = "delete.png",
                             BackgroundColor = Colors.Transparent,
-                            TextColor = Colors.Red,
-                            FontSize = 20,
+                            WidthRequest = 30,
+                            HeightRequest = 30,
                             VerticalOptions = LayoutOptions.Center,
                             HorizontalOptions = LayoutOptions.EndAndExpand,
                             Command = new Command(() => DeleteContact(contact))
@@ -81,6 +88,12 @@ public partial class NewPage5 : ContentPage
 
             ContactsList.Children.Add(contactFrame);
         }
+    }
+
+    private void SelectContact(Friend contact)
+    {
+        phoneEntry.Text = contact.Phone;
+        email_phone.Text = contact.Email;
     }
 
     private async void DeleteContact(Friend friend)
@@ -115,7 +128,7 @@ public partial class NewPage5 : ContentPage
         db.Insert(friend);
         LoadContacts();
 
-        // ??????? ?????
+        // Очистка полей
         name.Text = string.Empty;
         phone.Text = string.Empty;
         email.Text = string.Empty;
@@ -127,7 +140,7 @@ public partial class NewPage5 : ContentPage
     private async void Saada_sms_Clicked(object? sender, EventArgs e)
     {
         string phone = phoneEntry.Text;
-        var message = "Tere tulemast! Saadan s�numi";
+        var message = "Tere tulemast! Saadan sõnumi";
         SmsMessage sms = new SmsMessage(message, phone);
         if (!string.IsNullOrWhiteSpace(phone) && Sms.Default.IsComposeSupported)
         {
