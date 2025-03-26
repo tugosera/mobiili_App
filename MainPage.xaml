@@ -67,6 +67,13 @@
                 Clicked="OnClickedBtn8"
                 HorizontalOptions="Fill"
                 VerticalOptions="Fill" />
+            <Button
+                x:Name="Btn9"
+                Text="Riigid button" 
+                SemanticProperties.Hint=""
+                Clicked="OnClickedBtn9"
+                HorizontalOptions="Fill"
+                VerticalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>
 
