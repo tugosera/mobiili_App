@@ -1,56 +1,140 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Security.Cryptography.X509Certificates;
-using static System.Net.Mime.MediaTypeNames;
+using Microsoft.Maui.Controls;
 
 namespace mobiili_App;
 
-public class Telefon
+public class EuroopaRiik
 {
-    public string Nimetus { get; set; }
-    public string Tootja { get; set; }
-    public int Hind { get; set; }
-    public string Pilt { get; set; }
+    public string Nimi { get; set; }
+    public string Pealinn { get; set; }
+    public int Elanikud { get; set; }
+    public string LippUrl { get; set; }
 }
+
 public class NewPage6 : ContentPage
 {
-    public List<Telefon> Telefonid { get; set; }
-    Label lbl_list;
-    ListView list;
+    private ObservableCollection<EuroopaRiik> riigid;
+    private ListView listView;
+
     public NewPage6()
-    {
-        Telefonid = new List<Telefon>
+    {   
+        Title = "Euroopa Riigid";
+
+        riigid = new ObservableCollection<EuroopaRiik>
         {
-        new Telefon {Nimetus="Samsung Galaxy S22 Ultra", Tootja="Samsung", Hind=1349 },
-        new Telefon {Nimetus="Xiaomi Mi 11 Lite 5G NE", Tootja="Xiaomi", Hind=399 }, 
-        new Telefon {Nimetus="Xiaomi Mi 11 Lite 5G", Tootja="Xiaomi", Hind=339 },
-        new Telefon {Nimetus="iPhone 13", Tootja="Apple", Hind=1179 }
+            new EuroopaRiik { Nimi = "Eesti", Pealinn = "Tallinn", Elanikud = 1320000, LippUrl = "https://flagcdn.com/w320/ee.png" },
+            new EuroopaRiik { Nimi = "Soome", Pealinn = "Helsinki", Elanikud = 5500000, LippUrl = "https://flagcdn.com/w320/fi.png" }
         };
-        list = new ListView
+
+        listView = new ListView
         {
+            ItemsSource = riigid,
             HasUnevenRows = true,
-            ItemsSource = Telefonid,
             ItemTemplate = new DataTemplate(() =>
             {
-                Label nimetus = new Label { FontSize = 20 };
-                nimetus.SetBinding(Label.TextProperty, "Nimetus");
+                var nimi = new Label { FontSize = 18, FontAttributes = FontAttributes.Bold };
+                nimi.SetBinding(Label.TextProperty, "Nimi");
 
-                Label tootja = new Label();
-                tootja.SetBinding(Label.TextProperty, "Tootja");
+                var lipp = new Image { HeightRequest = 40, WidthRequest = 60 };
+                lipp.SetBinding(Image.SourceProperty, "LippUrl");
 
-                Label hind = new Label();
-                hind.SetBinding(Label.TextProperty, "Hind");
-
-                return new ViewCell
+                var deleteBtn = new Button { Text = "Kustuta", BackgroundColor = Colors.Red, TextColor = Colors.White, WidthRequest = 80 };
+                deleteBtn.SetBinding(Button.CommandParameterProperty, new Binding("."));
+                deleteBtn.Clicked += (s, e) =>
                 {
-                    View = new StackLayout
-                    {
-                        Padding = new Thickness(0, 5),
-                        Orientation = StackOrientation.Vertical,
-                        Children = { nimetus, tootja, hind }
-                    }
+                    var btn = s as Button;
+                    var riik = btn?.CommandParameter as EuroopaRiik;
+                    if (riik != null) riigid.Remove(riik);
                 };
+
+                var layout = new StackLayout
+                {
+                    Orientation = StackOrientation.Horizontal,
+                    Children = { lipp, nimi, deleteBtn },
+                    Padding = 5,
+                    Spacing = 10
+                };
+
+                var viewCell = new ViewCell { View = layout };
+
+                layout.GestureRecognizers.Add(new TapGestureRecognizer
+                {
+                    Command = new Command(async () =>
+                    {
+                        var selected = viewCell.BindingContext as EuroopaRiik;
+                        if (selected != null)
+                            await Navigation.PushAsync(new RiigiInfoPage(selected));
+                    })
+                });
+
+                return viewCell;
             })
         };
 
+        var nimiEntry = new Entry { Placeholder = "Riigi nimi" };
+        var pealinnEntry = new Entry { Placeholder = "Pealinn" };
+        var elanikudEntry = new Entry { Placeholder = "Elanikke", Keyboard = Keyboard.Numeric };
+        var lippEntry = new Entry { Placeholder = "Lipu URL" };
+
+        var lisaBtn = new Button { Text = "Lisa riik", BackgroundColor = Colors.Green, TextColor = Colors.White };
+        lisaBtn.Clicked += (s, e) =>
+        {
+            if (!int.TryParse(elanikudEntry.Text, out int elanikud)) return;
+            if (string.IsNullOrWhiteSpace(nimiEntry.Text)) return;
+
+            string nimi = nimiEntry.Text.Trim();
+
+            if (!riigid.Any(r => r.Nimi.Equals(nimi, StringComparison.OrdinalIgnoreCase)))
+            {
+                riigid.Add(new EuroopaRiik
+                {
+                    Nimi = nimi,
+                    Pealinn = pealinnEntry.Text?.Trim(),
+                    Elanikud = elanikud,
+                    LippUrl = lippEntry.Text?.Trim()
+                });
+
+                nimiEntry.Text = pealinnEntry.Text = elanikudEntry.Text = lippEntry.Text = "";
+            }
+        };
+
+        Content = new ScrollView
+        {
+            Content = new StackLayout
+            {
+                Padding = 15,
+                Children =
+                {
+                    new Label { Text = "Euroopa riikide nimekiri", FontSize = 24, HorizontalOptions = LayoutOptions.Center },
+                    nimiEntry,
+                    pealinnEntry,
+                    elanikudEntry,
+                    lippEntry,
+                    lisaBtn,
+                    listView
+                }
+            }
+        };
+    }
 }
+
+public class RiigiInfoPage : ContentPage
+{
+    public RiigiInfoPage(EuroopaRiik riik)
+    {
+        Title = riik.Nimi;
+
+        Content = new StackLayout
+        {
+            Padding = 20,
+            Children =
+            {
+                new Label { Text = $"Riik: {riik.Nimi}", FontSize = 22 },
+                new Label { Text = $"Pealinn: {riik.Pealinn}", FontSize = 18 },
+                new Label { Text = $"Elanikke: {riik.Elanikud}", FontSize = 18 },
+                new Image { Source = riik.LippUrl, HeightRequest = 150, HorizontalOptions = LayoutOptions.Center }
+            }
+        };
+    }
 }
