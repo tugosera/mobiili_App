@@ -161,7 +161,7 @@ namespace mobiili_App
             riigid.Clear();
             foreach (var r in list)
                 riigid.Add(r);
-        }
+        } 
     }
 
     public class RiigiInfoPage : ContentPage
